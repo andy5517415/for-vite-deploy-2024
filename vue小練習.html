@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>練習喔1234</h1>
+    <!--應用程式生成之位置-->
+    <div id="app">
+        {{num}}
+        <div id="num">1</div>
+        <button type="button" v-on:click="ClickMe">點我拉Vue</button>
+        <button type="button" onclick="ClickMe2()">點我拉Js</button>
+    </div>
+
+
+    <script>
+        console.log("Vue",Vue);
+
+        const { createApp,ref } = Vue; // 解構，取出特定物件(方法)，要什麼就取什麼
+        const app = createApp({ // 建立根元件
+            // Composition
+            setup(){
+                const num = ref(100);
+                
+                // # Vue變數與value的關係
+                // setInterval(() => {
+                //     num.value++
+                // }, 500);
+                function ClickMe() {
+                    num.value++
+                }
+
+                return {
+                    num,
+                    ClickMe
+                }
+            }
+        });  
+        app.mount('#app'); // 決定生成位置(元素)
+
+        // 我是JS事件，多了一些步驟
+        var a = 1;
+        function ClickMe2 ()
+        {
+            a++;
+            $('#num').text(a);
+        }
+    </script>
+</body>
+</html>
